@@ -30,6 +30,12 @@ int stack_backtrace()
 	printk("Stack backtrace:\n");
 
 	// Your code here.
-
+	u64* fp=(u64*)*((u64*)read_fp());
+	while(fp!=0){
+		printk("LR %llx FP %llx Args %llu %llu %llu %llu %llu\n",
+		*(fp+1),fp,*(fp-2),*(fp-1),*fp,*(fp+1),*(fp+2));
+		fp=(u64*)*fp;
+	}
+		// kinfo("leaving stack_test %llu\n", fp);
 	return 0;
 }
